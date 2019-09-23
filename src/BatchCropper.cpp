@@ -1,6 +1,3 @@
-// BatchCropper.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-#include <vld.h>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -19,12 +16,18 @@ int main()
 	std::string inDir;
 	std::cout << "Drag folder of images here\n";
 	inDir = Strput();
-	inDir = inDir.substr(1, inDir.size() - 2);
+	if (inDir[0] == '"')
+	{
+		inDir = inDir.substr(1, inDir.size() - 2);
+	}
 
 	std::string outDir;
 	std::cout << "\nDrag output folder here\n";
 	outDir = Strput();
-	outDir = outDir.substr(1, outDir.size() - 2);
+	if (outDir[0] == '"')
+	{
+		outDir = outDir.substr(1, outDir.size() - 2);
+	}
 
 	int left, right, top, bottom;
 	std::cout << "\nEnter trim amount in the following order: Left, Right, Top, Bottom.\n";
@@ -63,13 +66,7 @@ int main()
 	// Trim images 
 	for (int i = 0; i < imageCount; i++)
 	{
-		if(!images[i].Trim(left, right, top, bottom))
-		{
-			// Fail
-			std::cout << "Failed\n";
-			std::cin;
-			return 1;
-		}
+		images[i].Trim(left, right, top, bottom);
 	}
 
 	std::cout << "\nWriting to " << outDir << std::endl;

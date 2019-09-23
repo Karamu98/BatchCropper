@@ -30,7 +30,7 @@ bool Image::Trim(unsigned int a_fromLeft, unsigned int a_fromRight, unsigned int
 {
 	if (!m_isValid)
 	{
-		std::cout << "Image is invalid\n";
+		std::cout << "Image " << m_filePath << "is invalid\n";
 		return false;
 	}
 	int newWidth = (m_width - a_fromLeft) - a_fromRight;
@@ -58,6 +58,10 @@ bool Image::Trim(unsigned int a_fromLeft, unsigned int a_fromRight, unsigned int
 
 void Image::Write(const std::string& a_fileDir)
 {
+	if (!m_isValid)
+	{
+		return;
+	}
 	stbi_write_png((a_fileDir + m_fileName).c_str(), m_width, m_height, m_channels, m_imageData, m_width * m_channels);
 }
 
