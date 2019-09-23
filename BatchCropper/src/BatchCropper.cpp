@@ -42,7 +42,7 @@ int main()
 	std::vector<std::string>* imagePaths = GetAllFilesInDir(inDir);
 
 	// Grab all image files
-	unsigned int imageCount = imagePaths->size();
+	unsigned int imageCount = (unsigned int)imagePaths->size();
 	if (imageCount <= 0)
 	{
 		std::cout << "\nNo images found at " << inDir << "\n";
@@ -53,7 +53,7 @@ int main()
 	Image currentImage;
 
 	// Load, process and save image then delete
-	for (int i = 0; i < imageCount; i++)
+	for (unsigned int i = 0; i < imageCount; i++)
 	{
 		currentImage = Image((*imagePaths)[i]);
 		currentImage.Trim(left, right, top, bottom);

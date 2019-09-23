@@ -29,10 +29,10 @@ project "BatchCropper"
 
 	files
 	{
-		"src/**.h", 
-		"src/**.c", 
-		"src/**.hpp", 
-		"src/**.cpp" 
+		"BatchCropper/src/**.h", 
+		"BatchCropper/src/**.c", 
+		"BatchCropper/src/**.hpp", 
+		"BatchCropper/src/**.cpp" 
 	}
 
 	includedirs

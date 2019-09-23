@@ -7,11 +7,11 @@
 
 #include <iostream>
 
-Image::Image() : m_isValid(false), m_selfAlloc(false)
+Image::Image() : m_isValid(false), m_selfAlloc(false), m_height(0), m_imageData(nullptr), m_width(0), m_channels(0)
 {
 }
 
-Image::Image(const std::string& a_filePath) : m_isValid(false), m_selfAlloc(false)
+Image::Image(const std::string& a_filePath) : m_isValid(false), m_selfAlloc(false), m_height(0), m_imageData(nullptr), m_width(0), m_channels(0)
 {
 	LoadImage(a_filePath);
 }
@@ -40,9 +40,9 @@ bool Image::Trim(unsigned int a_fromLeft, unsigned int a_fromRight, unsigned int
 
 	int newY = 0;
 	// Iterate of each row and copy
-	for (int y = a_fromTop; y < m_height - a_fromBottom; y++)
+	for (unsigned int y = a_fromTop; y < m_height - a_fromBottom; y++)
 	{
-		memcpy(&tempImage[(newWidth * m_channels) * newY], &m_imageData[((m_width * m_channels) * y) + (a_fromLeft * m_channels)], newWidth * m_channels);
+		memcpy(&tempImage[(newWidth * m_channels) * newY], &m_imageData[((m_width * m_channels) * y) + (a_fromLeft * m_channels)], (size_t)(newWidth * m_channels));
 		newY++;
 	}
 
