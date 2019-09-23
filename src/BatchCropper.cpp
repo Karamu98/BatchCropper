@@ -41,7 +41,7 @@ int main()
 	// Grab all the filepaths for images in the buffer
 	std::vector<std::string>* imagePaths = GetAllFilesInDir(inDir);
 
-	// Grab all image files and create memory pool
+	// Grab all image files
 	unsigned int imageCount = imagePaths->size();
 	if (imageCount <= 0)
 	{
@@ -50,34 +50,18 @@ int main()
 		return 1;
 	}
 
-	std::vector<Image> images;
-	images.reserve(imageCount);
+	Image currentImage;
 
-	// Load images into buffer
+	// Load, process and save image then delete
 	for (int i = 0; i < imageCount; i++)
 	{
-		images.push_back(Image((*imagePaths)[i]));
+		currentImage = Image((*imagePaths)[i]);
+		currentImage.Trim(left, right, top, bottom);
+		currentImage.Write(outDir);
+		currentImage.Destroy();
 	}
 
 	delete imagePaths;
-
-	std::cout << "\nProcessing...\n";
-
-	// Trim images 
-	for (int i = 0; i < imageCount; i++)
-	{
-		images[i].Trim(left, right, top, bottom);
-	}
-
-	std::cout << "\nWriting to " << outDir << std::endl;
-
-	// Save images 
-	for (int i = 0; i < imageCount; i++)
-	{
-		images[i].Write(outDir);
-		images[i].Destroy();
-	}
-
 
 	std::cout << "\nComplete\n";
 	std::cin;

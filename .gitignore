@@ -2,3 +2,7 @@
 
 .vs/
 bin/
+BatchCropper.sln
+BatchCropper/BatchCropper.vcxproj.user
+BatchCropper/BatchCropper.vcxproj.filters
+BatchCropper/BatchCropper.vcxproj
