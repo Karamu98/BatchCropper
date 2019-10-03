@@ -30,7 +30,6 @@ bool Image::Trim(unsigned int a_fromLeft, unsigned int a_fromRight, unsigned int
 {
 	if (!m_isValid)
 	{
-		std::cout << "Image " << m_filePath << "is invalid\n";
 		return false;
 	}
 	int newWidth = (m_width - a_fromLeft) - a_fromRight;
